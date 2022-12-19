@@ -19,9 +19,9 @@ namespace Resturent.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetById()
+        public IActionResult GetById(int id)
         {
-            var category = _categoryRepository.GetById(1);
+            var category = _categoryRepository.GetById(id);
             return View(category);
         }
     }
