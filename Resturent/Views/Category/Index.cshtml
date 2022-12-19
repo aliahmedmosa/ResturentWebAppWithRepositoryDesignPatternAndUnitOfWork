@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Details";
+}
+<table class="table" id="tblStudent">
+    <thead>
+        <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+             <th>
+                @item.Id
+            </th>
+
+            <th>
+                @item.Name
+            </th>
+            <th>
+
+                <a asp-controller="Category" asp-action="GetById" asp-route-id="@item.Id">Details</a>
+            </th>
+        </tr>
+        }
+    </tbody>
+</table>
