@@ -8,8 +8,12 @@ namespace Resturent.Core.Repositories
 {
     public interface IBaseRepository<T> where T : class
     {
-        List<T> GetAll();
+        IEnumerable<T> GetAll();
         T GetById(int id);
-        
+        void Add(T model);
+        void Edit(T model);
+        void Delete(T model);
+
+
     }
 }

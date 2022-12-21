@@ -24,10 +24,12 @@ namespace Resturent.Core.Models
         [Display(Name= "Meal component")]
         public string Discription { get; set; }
 
-        public virtual Category category { get; set; }
-
         public int categoryId { get; set; }
 
-        
+
+        [ForeignKey("categoryId")]
+        public Category? category { get; set; }
+
+
     }
 }

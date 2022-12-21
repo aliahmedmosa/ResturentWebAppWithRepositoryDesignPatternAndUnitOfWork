@@ -21,8 +21,57 @@ namespace Resturent.Controllers
         [HttpGet]
         public IActionResult GetById(int id)
         {
-            var category = _categoryRepository.GetById(id);
+            Category category = _categoryRepository.GetById(id);
             return View(category);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                _categoryRepository.Add(model);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+           
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Category category = _categoryRepository.GetById(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                _categoryRepository.Edit(model);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+
+        }
+
+        
+        public IActionResult Delete(int id)
+        {
+            Category category = _categoryRepository.GetById(id);
+            if(category != null)
+            {
+                _categoryRepository.Delete(category);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

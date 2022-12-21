@@ -11,8 +11,8 @@ using Resturent.EF;
 namespace Resturent.EF.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221219112401_addCategoriesAndMealsTablesToRestaurant")]
-    partial class addCategoriesAndMealsTablesToRestaurant
+    [Migration("20221221193223_initOne")]
+    partial class initOne
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

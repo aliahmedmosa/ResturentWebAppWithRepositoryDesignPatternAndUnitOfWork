@@ -4,7 +4,7 @@
 
 namespace Resturent.EF.Migrations
 {
-    public partial class addCategoriesAndMealsTablesToRestaurant : Migration
+    public partial class initOne : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

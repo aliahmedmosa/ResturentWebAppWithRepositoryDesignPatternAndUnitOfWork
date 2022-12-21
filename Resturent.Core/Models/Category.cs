@@ -14,6 +14,6 @@ namespace Resturent.Core.Models
         [Required,MaxLength(150)]
         public string Name { get; set; }
 
-        public virtual List<Meal> Meals { get; set; }
+        public virtual List<Meal>? Meals { get; set; }
     }
 }

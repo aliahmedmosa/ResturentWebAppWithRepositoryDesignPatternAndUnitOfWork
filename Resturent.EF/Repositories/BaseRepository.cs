@@ -16,7 +16,24 @@ namespace Resturent.EF.Repositories
             _context = context;
         }
 
-        public List<T> GetAll()
+        public void Add(T model)
+        {
+            _context.Set<T>().Add(model);
+            _context.SaveChanges();
+        }
+
+        public void Edit(T model)
+        {
+            _context.Set<T>().Update(model);
+            _context.SaveChanges();
+        }
+        public void Delete(T model)
+        {
+            _context.Set<T>().Remove(model);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
