@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Resturent.Core;
 using Resturent.Core.Models;
 using Resturent.Core.Repositories;
 
@@ -6,28 +7,29 @@ namespace Resturent.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly IBaseRepository<Category> _categoryRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(IBaseRepository<Category> categoryRepository)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Category> categories = _categoryRepository.GetAll();
+            IEnumerable<Category> categories = _unitOfWork.Categories.GetAll();
             return View(categories);
         }
 
         [HttpGet]
         public IActionResult GetById(int id)
         {
-            Category category = _categoryRepository.GetById(id);
+            Category category = _unitOfWork.Categories.GetById(id);
             return View(category);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
+
             return View();
         }
 
@@ -36,7 +38,8 @@ namespace Resturent.Controllers
         {
             if (ModelState.IsValid)
             {
-                _categoryRepository.Add(model);
+                _unitOfWork.Categories.Add(model);
+                _unitOfWork.Complete();
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -46,7 +49,8 @@ namespace Resturent.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Category category = _categoryRepository.GetById(id);
+            Category category = _unitOfWork.Categories.GetById(id);
+
             return View(category);
         }
 
@@ -55,7 +59,8 @@ namespace Resturent.Controllers
         {
             if (ModelState.IsValid)
             {
-                _categoryRepository.Edit(model);
+                _unitOfWork.Categories.Edit(model);
+                _unitOfWork.Complete();
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -65,10 +70,11 @@ namespace Resturent.Controllers
         
         public IActionResult Delete(int id)
         {
-            Category category = _categoryRepository.GetById(id);
+            Category category = _unitOfWork.Categories.GetById(id);
             if(category != null)
             {
-                _categoryRepository.Delete(category);
+                _unitOfWork.Categories.Delete(category);
+                _unitOfWork.Complete();
             }
 
             return RedirectToAction(nameof(Index));

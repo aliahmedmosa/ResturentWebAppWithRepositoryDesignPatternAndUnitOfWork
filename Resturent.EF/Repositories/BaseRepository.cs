@@ -19,18 +19,18 @@ namespace Resturent.EF.Repositories
         public void Add(T model)
         {
             _context.Set<T>().Add(model);
-            _context.SaveChanges();
+            
         }
 
         public void Edit(T model)
         {
             _context.Set<T>().Update(model);
-            _context.SaveChanges();
+            
         }
         public void Delete(T model)
         {
             _context.Set<T>().Remove(model);
-            _context.SaveChanges();
+            
         }
 
         public IEnumerable<T> GetAll()

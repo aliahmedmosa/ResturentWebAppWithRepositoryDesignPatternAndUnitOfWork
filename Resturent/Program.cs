@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Resturent.Core;
 using Resturent.Core.Repositories;
 using Resturent.EF;
 using Resturent.EF.Repositories;
@@ -12,7 +13,11 @@ builder.Services.AddDbContext<ApplicationDBContext>(option =>
                     option.UseSqlServer(builder.Configuration.GetConnectionString("cs"),
                         b=>b.MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName)));
 
-builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
+//When use UnitOfWork just make service for it.
+builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
+
+//When you use repository design pattern without unit of work you have to make service for evry IRepository and its Repository.
+//builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
