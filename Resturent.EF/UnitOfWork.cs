@@ -15,12 +15,12 @@ namespace Resturent.EF
         private readonly ApplicationDBContext _Context;
 
         public IBaseRepository<Category> Categories { get; private set; }
-        public IBaseRepository<Meal> Meals { get; private set; }
+        public IMealsRepository Meals { get; private set; }
         public UnitOfWork( ApplicationDBContext context)
         {
             _Context = context;
             Categories = new BaseRepository<Category>(_Context);
-            Meals = new BaseRepository<Meal>(_Context);
+            Meals = new MealsRepository(_Context);
         }
         public int Complete()
         {

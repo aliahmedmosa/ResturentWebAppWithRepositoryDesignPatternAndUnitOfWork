@@ -56,7 +56,7 @@ namespace Resturent.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(6,2)");
 
                     b.Property<string>("Url")
                         .IsRequired()

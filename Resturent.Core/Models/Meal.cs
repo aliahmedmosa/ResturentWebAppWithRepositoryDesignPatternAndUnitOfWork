@@ -13,23 +13,22 @@ namespace Resturent.Core.Models
         public int Id { get; set; }
         [Required]
         [Display(Name = "Meal Name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [Display(Name ="Image")]
-        public string Url { get; set; }
+        public string Url { get; set; } = string.Empty;
 
-        [Column(TypeName = "decimal(5, 2)")]
+        [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
 
         [Display(Name= "Meal component")]
-        public string Discription { get; set; }
+        public string Discription { get; set; } = string.Empty;
 
+        [Required]
+        [ForeignKey("category")]
         public int categoryId { get; set; }
 
-
-        [ForeignKey("categoryId")]
-        public Category? category { get; set; }
-
+        public virtual Category? category { get; set; }
 
     }
 }

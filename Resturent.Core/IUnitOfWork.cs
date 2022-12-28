@@ -11,7 +11,8 @@ namespace Resturent.Core
     public interface IUnitOfWork:IDisposable
     {
         IBaseRepository<Category> Categories { get; }
-        IBaseRepository<Meal> Meals { get; }
+        IMealsRepository Meals { get; }
+        
 
         int Complete();
     }

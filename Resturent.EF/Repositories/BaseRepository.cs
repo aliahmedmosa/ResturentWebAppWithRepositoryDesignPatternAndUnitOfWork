@@ -10,7 +10,6 @@ namespace Resturent.EF.Repositories
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly ApplicationDBContext _context;
-
         public BaseRepository(ApplicationDBContext context)
         {
             _context = context;
@@ -42,5 +41,6 @@ namespace Resturent.EF.Repositories
         {
             return _context.Set<T>().Find(id);
         }
+
     }
 }
