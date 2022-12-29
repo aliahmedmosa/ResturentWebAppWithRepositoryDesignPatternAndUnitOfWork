@@ -16,7 +16,7 @@ namespace Resturent.EF.Repositories
         {
            _Context=Context;
         }
-        public IEnumerable<Meal> GetMeals()
+        public IEnumerable<Meal> GetMealsIncludeCategory()
         {
             return _Context.Meals.Include(x=>x.category).ToList();
         }

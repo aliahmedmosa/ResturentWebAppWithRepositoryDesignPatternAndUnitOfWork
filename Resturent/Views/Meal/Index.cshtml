@@ -1,10 +1,30 @@
 ﻿@model IEnumerable<Meal>
 @{
     ViewData["Title"] = "Categories";
+    Layout = "_Admin";
 }
 
-<div>
-    <a asp-action="Add">Add New Record</a>
+<style>
+    th{
+        max-width:300px;
+    }
+</style>
+
+<div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+       <div>
+    <a asp-action="Add" class="btn btn-success">Add New Record</a>
 </div>
 <table class="table" id="tblStudent">
     <thead>
@@ -57,9 +77,13 @@
             <th>
 
                @* <a asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">Edit</a>*@
-                <a asp-controller="Meal" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-controller="Meal" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
             </th>
         </tr>
         }
     </tbody>
 </table>
+
+    </div>
+</section>
+

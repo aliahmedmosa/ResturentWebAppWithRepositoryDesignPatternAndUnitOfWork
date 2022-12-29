@@ -14,7 +14,8 @@ namespace Resturent.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Meal> meals = _unitOfWork.Meals.GetMeals();
+
+            IEnumerable<Meal> meals = _unitOfWork.Meals.GetMealsIncludeCategory();
             return View(meals);
         }
         [HttpGet]

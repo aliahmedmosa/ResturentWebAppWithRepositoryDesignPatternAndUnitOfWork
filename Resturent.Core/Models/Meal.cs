@@ -11,6 +11,7 @@ namespace Resturent.Core.Models
     public class Meal
     {
         public int Id { get; set; }
+
         [Required]
         [Display(Name = "Meal Name")]
         public string Name { get; set; } = string.Empty;
@@ -26,6 +27,7 @@ namespace Resturent.Core.Models
 
         [Required]
         [ForeignKey("category")]
+        [Display(Name = "Category Name")]
         public int categoryId { get; set; }
 
         public virtual Category? category { get; set; }

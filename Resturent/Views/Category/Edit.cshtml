@@ -2,11 +2,22 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_Admin";
 }
 
 
-<h4>Create Category @Model.Name </h4>
-<hr />
+<div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Home</a></li>
+          <li class="breadcrumb-item active">Edit Category @Model.Name</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit" >
@@ -28,6 +39,11 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+   
+</section>
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

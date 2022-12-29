@@ -1,10 +1,25 @@
 ﻿@model IEnumerable<Category>
 @{
     ViewData["Title"] = "Categories";
+    Layout = "_Admin";
 }
 
+
+<div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a >Home</a></li>
+          <li class="breadcrumb-item active">Add Category</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
 <div>
-    <a asp-action="Add">Add New Record</a>
+    <a asp-action="Add" class="btn btn-success">Add Category</a>
 </div>
 <table class="table" id="tblStudent">
     <thead>
@@ -39,3 +54,6 @@
         }
     </tbody>
 </table>
+
+    </div>
+</section>

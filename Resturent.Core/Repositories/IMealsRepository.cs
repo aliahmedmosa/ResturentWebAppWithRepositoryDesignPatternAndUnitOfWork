@@ -9,6 +9,6 @@ namespace Resturent.Core.Repositories
 {
     public interface IMealsRepository:IBaseRepository<Meal>
     {
-        IEnumerable<Meal> GetMeals();
+        IEnumerable<Meal> GetMealsIncludeCategory();
     }
 }
