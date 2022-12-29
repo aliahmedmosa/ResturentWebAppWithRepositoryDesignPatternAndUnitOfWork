@@ -40,6 +40,28 @@ namespace Resturent.Controllers
             return View(model);
         }
 
+
+       [HttpGet]
+       public IActionResult Edit(int id)
+        {
+            Meal meal = _unitOfWork.Meals.GetById(id);
+            ViewBag.CategorysList = _unitOfWork.Categories.GetAll();
+            return View(meal);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Meal model)
+        {
+            uploadImage(model);
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Meals.Edit(model);
+                _unitOfWork.Complete();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
         public IActionResult Delete(int id)
         {
             Meal meal = _unitOfWork.Meals.GetById(id);

@@ -5,6 +5,9 @@
 }
 
 <style>
+    .btn-info{
+        color:#fff;
+    }
     th{
         max-width:300px;
     }
@@ -15,7 +18,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a >Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">Meals</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -24,7 +27,7 @@
       <div class="row">
 
        <div>
-    <a asp-action="Add" class="btn btn-success">Add New Record</a>
+    <a asp-action="Add" class="btn btn-success">Add New Meal</a>
 </div>
 <table class="table" id="tblStudent">
     <thead>
@@ -76,7 +79,7 @@
             </th>
             <th>
 
-               @* <a asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">Edit</a>*@
+               <a asp-controller="Meal" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Edit</a>
                 <a asp-controller="Meal" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
             </th>
         </tr>
