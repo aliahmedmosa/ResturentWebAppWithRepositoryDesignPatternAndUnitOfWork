@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using Resturent.Core;
 using Resturent.Core.Models;
 using Resturent.Core.Repositories;
@@ -8,9 +9,11 @@ namespace Resturent.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IToastNotification _ToastNotification;
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CategoryController(IUnitOfWork unitOfWork, IToastNotification ToastNotification)
         {
+            _ToastNotification = ToastNotification;
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
@@ -40,12 +43,11 @@ namespace Resturent.Controllers
             {
                 _unitOfWork.Categories.Add(model);
                 _unitOfWork.Complete();
+                _ToastNotification.AddSuccessToastMessage("Category added successfully !");
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
-           
         }
-
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -61,13 +63,14 @@ namespace Resturent.Controllers
             {
                 _unitOfWork.Categories.Edit(model);
                 _unitOfWork.Complete();
+                _ToastNotification.AddInfoToastMessage("Category edited successfully !");
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
 
         }
 
-        
+        //ajax delete Action
         public IActionResult Delete(int id)
         {
             Category category = _unitOfWork.Categories.GetById(id);
@@ -77,7 +80,7 @@ namespace Resturent.Controllers
                 _unitOfWork.Complete();
             }
 
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
     }
 }

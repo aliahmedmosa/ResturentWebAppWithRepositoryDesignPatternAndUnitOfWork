@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 using Resturent.Core;
 using Resturent.Core.Repositories;
 using Resturent.EF;
@@ -15,6 +16,15 @@ builder.Services.AddDbContext<ApplicationDBContext>(option =>
 
 //When use UnitOfWork just make service for it.
 builder.Services.AddTransient<IUnitOfWork,UnitOfWork>();
+
+//add NToastNotify service
+builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+{
+    ProgressBar=true,
+    PositionClass=ToastPositions.TopRight,
+    PreventDuplicates=true,
+    CloseButton=true
+});
 
 //When you use repository design pattern without unit of work you have to make service for evry IRepository and its Repository.
 //builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
